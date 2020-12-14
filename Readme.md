@@ -38,7 +38,9 @@ The parameters are:
 - (blue) `customerNumber` the ISR customer number in CHF or EUR. Formatted VV-XXX-C (ISR code - serial number - check digit).
 
 ```js
-codeLine(
+const { codeLine } = require("esr-code-line");
+
+const code = codeLine(
   "01",
   "3949",
   "75",
@@ -50,5 +52,7 @@ codeLine(
 The codeLine function does not add check digits to the reference or customer numbers. They can however be added using the `attachCheckDigit` function included in the module.
 
 ```js
+const { attachCheckDigit } = require("esr-code-line");
+
 attachCheckDigit("04"); // returns "042"
 ```
