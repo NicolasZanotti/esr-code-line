@@ -1,0 +1,28 @@
+{
+  "name": "esr-code-line",
+  "version": "0.9.0",
+  "description": "A code line generator for orange payment slips used in Switzerland",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "prepublish": "npm run build",
+  "keywords": [
+    "payment",
+    "switzerland",
+    "swiss",
+    "bill"
+  ],
+  "author": "Nicolas Zanotti",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26",
+    "@types/node": "^14",
+    "jest": "^26",
+    "ts-jest": "^26",
+    "ts-node": "^9",
+    "typescript": "^4"
+  }
+}
