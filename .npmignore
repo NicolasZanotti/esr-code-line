@@ -1,4 +1,6 @@
 !dist/
 *.ai
+*.tgz
 tsconfig.json
 jest.config.ts
+coverage/
