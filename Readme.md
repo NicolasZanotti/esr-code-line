@@ -44,13 +44,13 @@ The parameters are:
 ```js
 const { codeLine } = require("esr-code-line");
 
-const code = codeLine(
-  "01",
-  "3949",
-  "75",
-  "12 00000 00000 23447 89432 16899",
-  "01-162-8"
-);
+const code = codeLine({
+  slipType: "01",
+  amountFrancsOrEuros: "3949",
+  amountRappenOrCents: "75",
+  referenceNumber: "12 00000 00000 23447 89432 16899",
+  customerNumber: "01-162-8",
+});
 ```
 
 The codeLine function does not add check digits to the reference or customer numbers. They can however be added using the `attachCheckDigit` function included in the module.

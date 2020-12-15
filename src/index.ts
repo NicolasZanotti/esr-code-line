@@ -22,8 +22,11 @@ export function checkDigit(code: string): number {
 export const attachCheckDigit = (code: string): string =>
   code + checkDigit(code).toString();
 
-export const pad = (s: string, n: number): string =>
-  (s.length < n ? "0".repeat(n - s.length) : "") + s;
+export function pad(s: string, n: number): string {
+  let zeros = "";
+  for (let i = 0; i < n - s.length; i++) zeros += "0";
+  return zeros + s;
+}
 
 export function toSubscriberNumber(customerNumber: string): string {
   const split = customerNumber.split("-");
@@ -36,30 +39,32 @@ export function toSubscriberNumber(customerNumber: string): string {
   return isrCode + pad(serialNumber, 6) + checkDigit;
 }
 
-export function codeLine(
-  slipType: "01" | "04" | "11" | "14" | "21" | "23" | "31" | "33",
-  amountFrancsOrEuros: string,
-  amountRappenOrCents: string,
-  referenceNumber: string,
-  customerNumber: string
-): string {
-  const paddedAmountFrancsOrEuros = pad(amountFrancsOrEuros, 8);
+export interface SlipRequirements {
+  readonly slipType: "01" | "04" | "11" | "14" | "21" | "23" | "31" | "33";
+  readonly amountFrancsOrEuros: string;
+  readonly amountRappenOrCents: string;
+  readonly referenceNumber: string;
+  readonly customerNumber: string;
+}
+
+export function codeLine(req: SlipRequirements): string {
+  const paddedAmountFrancsOrEuros = pad(req.amountFrancsOrEuros.toString(), 8);
 
   const checkDigit1 = checkDigit(
-    slipType + paddedAmountFrancsOrEuros + amountRappenOrCents
+    req.slipType + paddedAmountFrancsOrEuros + req.amountRappenOrCents
   );
 
-  const referenceNumberWithoutWhiteSpace = referenceNumber.replace(/\s/g, "");
+  const referenceNumberNoSpaces = req.referenceNumber.replace(/\s/g, "");
 
-  const subscriberNumber = toSubscriberNumber(customerNumber);
+  const subscriberNumber = toSubscriberNumber(req.customerNumber);
 
   return (
-    slipType +
+    req.slipType +
     paddedAmountFrancsOrEuros +
-    amountRappenOrCents +
+    req.amountRappenOrCents +
     checkDigit1 +
     AUXILIARY_CHARACTER_1 +
-    referenceNumberWithoutWhiteSpace +
+    referenceNumberNoSpaces +
     AUXILIARY_CHARACTER_2 +
     " " +
     subscriberNumber +

@@ -51,25 +51,25 @@ test("Computes valid check digits.", () => {
 
 test("Contains a valid check digit in the correct spot.", () => {
   // Values taken from ISR Manual p. 25
-  const result = codeLine(
-    "01",
-    "3949",
-    "75",
-    "12 00000 00000 23447 89432 16899",
-    "01-162-8"
-  );
+  const result = codeLine({
+    slipType: "01",
+    amountFrancsOrEuros: "3949",
+    amountRappenOrCents: "75",
+    referenceNumber: "12 00000 00000 23447 89432 16899",
+    customerNumber: "01-162-8",
+  });
 
   // check digit of slip type and amount is 3
   expect(result).toContain("0100003949753");
 });
 
 test("Assembles code in the correct order.", () => {
-  const result = codeLine(
-    "01",
-    "3949",
-    "75",
-    "12 00000 00000 23447 89432 16899",
-    "01-162-8"
-  );
+  const result = codeLine({
+    slipType: "01",
+    amountFrancsOrEuros: "3949",
+    amountRappenOrCents: "75",
+    referenceNumber: "12 00000 00000 23447 89432 16899",
+    customerNumber: "01-162-8",
+  });
   expect(result).toBe("0100003949753>120000000000234478943216899+ 010001628>");
 });
