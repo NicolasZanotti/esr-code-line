@@ -4,7 +4,9 @@ This package contains utility functions for generating the code line on the oran
 
 ![Swiss orange inpayment slip with code line example](./doc/code-line-location.gif)
 
-Note: **The QR-Bill replaces this standard.** See [paymentstandards.ch](https://www.paymentstandards.ch/).
+| Statements                  | Branches                | Functions                 | Lines                |
+| --------------------------- | ----------------------- | ------------------------- | -------------------- |
+| ![Statements](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg) | ![Lines](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg)    |
 
 ## Specification
 
@@ -16,6 +18,8 @@ The slip is known under these different names and abbreviations depending on the
 - Italian: _Polizza di versamento arancione con numero di riferimento (PVR)_
 
 The technical specification is from chapter 5 of the [Postfinance manual](https://www.postfinance.ch/content/dam/pfch/doc/cust/download/inpayslip_isr_man_en.pdf).
+
+Please note that the **QR-Bill replaces this standard** (see [paymentstandards.ch](https://www.paymentstandards.ch/)). Depending on the project it may be viable to skip straight to the newer standard.
 
 ## Installation
 
