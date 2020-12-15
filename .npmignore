@@ -1,1 +1,4 @@
 !dist/
+*.ai
+tsconfig.json
+jest.config.ts
