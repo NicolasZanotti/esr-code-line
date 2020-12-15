@@ -8,6 +8,10 @@
     "test": "jest",
     "build": "tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicolasZanotti/esr-code-line.git"
+  },
   "prepublish": "npm run build",
   "keywords": [
     "payment",
@@ -17,6 +21,10 @@
   ],
   "author": "Nicolas Zanotti",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NicolasZanotti/esr-code-line/issues"
+  },
+  "homepage": "https://github.com/NicolasZanotti/esr-code-line#readme",
   "devDependencies": {
     "@types/jest": "^26",
     "@types/node": "^14",
