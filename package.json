@@ -1,6 +1,6 @@
 {
   "name": "esr-code-line",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A code line generator for orange payment slips used in Switzerland",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

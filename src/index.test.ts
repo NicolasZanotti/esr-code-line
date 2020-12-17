@@ -7,8 +7,11 @@ import {
 } from "./index";
 
 test("Pads prices in CHF to the left with zeros.", () => {
-  const codeRequiresPadding = pad("1", 8);
-  expect(codeRequiresPadding).toBe("00000001");
+  const codeRequiresPaddingEightDigits = pad("1", 8);
+  expect(codeRequiresPaddingEightDigits).toBe("00000001");
+
+  const requiresPaddingToTwoDigits = pad("5", 2);
+  expect(requiresPaddingToTwoDigits).toBe("05");
 
   const codeExactRequiredLength = pad("12345678", 8);
   expect(codeExactRequiredLength).toBe("12345678");
@@ -72,4 +75,24 @@ test("Assembles code in the correct order.", () => {
     customerNumber: "01-162-8",
   });
   expect(result).toBe("0100003949753>120000000000234478943216899+ 010001628>");
+});
+
+test("Doesn't include price if zero or empty", () => {
+  const priceZero = codeLine({
+    slipType: "04",
+    amountFrancsOrEuros: "0",
+    amountRappenOrCents: "0",
+    referenceNumber: "12 34567 89012 34567 89012 34567",
+    customerNumber: "01-162-8",
+  });
+  expect(priceZero).toBe("042>123456789012345678901234567+ 010001628>");
+
+  const priceEmpty = codeLine({
+    slipType: "04",
+    amountFrancsOrEuros: "",
+    amountRappenOrCents: "",
+    referenceNumber: "12 34567 89012 34567 89012 34567",
+    customerNumber: "01-162-8",
+  });
+  expect(priceEmpty).toBe("042>123456789012345678901234567+ 010001628>");
 });

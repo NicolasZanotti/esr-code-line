@@ -48,10 +48,18 @@ export interface SlipRequirements {
 }
 
 export function codeLine(req: SlipRequirements): string {
-  const paddedAmountFrancsOrEuros = pad(req.amountFrancsOrEuros.toString(), 8);
+  const paddedAmountFrancsOrEuros =
+    parseInt(req.amountFrancsOrEuros) > 0
+      ? pad(req.amountFrancsOrEuros, 8)
+      : "";
+
+  const paddedRappenOrCents =
+    parseInt(req.amountRappenOrCents) > 0
+      ? pad(req.amountRappenOrCents, 2)
+      : "";
 
   const checkDigit1 = checkDigit(
-    req.slipType + paddedAmountFrancsOrEuros + req.amountRappenOrCents
+    req.slipType + paddedAmountFrancsOrEuros + paddedRappenOrCents
   );
 
   const referenceNumberNoSpaces = req.referenceNumber.replace(/\s/g, "");
@@ -61,7 +69,7 @@ export function codeLine(req: SlipRequirements): string {
   return (
     req.slipType +
     paddedAmountFrancsOrEuros +
-    req.amountRappenOrCents +
+    paddedRappenOrCents +
     checkDigit1 +
     AUXILIARY_CHARACTER_1 +
     referenceNumberNoSpaces +
